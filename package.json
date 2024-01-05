@@ -1,5 +1,11 @@
 {
   "name": "react-personal-notes-app-v2",
+  "description": "Submission Dicoding Academy Proyek: Membangun SPA + API, Context, dan Hooks",
+  "author": {
+    "name": "FARHAN",
+    "email": "farhan18042002@gmail.com",
+    "url": "https://github.com/KucingOyenBarbar/react-personal-notes-app-v2"
+  },
   "private": true,
   "version": "1.2.0",
   "type": "module",
@@ -7,7 +13,8 @@
     "dev": "vite",
     "build": "vite build",
     "lint": "eslint . --ext js,jsx --report-unused-disable-directives --max-warnings 0",
-    "preview": "vite preview"
+    "preview": "vite preview",
+    "build:preview": "vite build && vite preview"
   },
   "dependencies": {
     "auto-bind": "^5.0.1",
