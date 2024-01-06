@@ -1,14 +1,27 @@
 :root {
   /* font-family: Inter, system-ui, Avenir, Helvetica, Arial, sans-serif; */
   font-family: 'Poppins', sans-serif;
-
   line-height: 1.5;
   font-weight: 400;
-
-  color-scheme: light;
+  color-scheme: light dark;
   color: rgba(255, 255, 255, 0.87);
-  background-color: #fff;
+  --background-color: #fff;
+  scroll-behavior: smooth;
+  font-synthesis: none;
+  text-rendering: optimizeLegibility;
+  -webkit-font-smoothing: antialiased;
+  -moz-osx-font-smoothing: grayscale;
+}
 
+[data-theme='dark'] {
+  --color: #fff;
+  --background-color: #262626;
+}
+
+body {
+  background-color: var(--background-color);
+  color: var(--color);
+  transition: background-color 0.5s, color 0.5s;
   scroll-behavior: smooth;
   font-synthesis: none;
   text-rendering: optimizeLegibility;
@@ -196,4 +209,11 @@ main {
 [data-placeholder]:empty:before {
   content: attr(data-placeholder);
   color: var(--Font-800, #454545);
+}
+
+.btn-toggle-color-mode {
+  border: 0;
+  outline: 0;
+  background: none;
+  /* background-color: initial; */
 }

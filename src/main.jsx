@@ -8,6 +8,7 @@ import { router } from './routes/root/index';
 import 'bootstrap/dist/css/bootstrap.min.css';
 import './assets/styles/index.css';
 import './assets/styles/responsive.css';
+import './assets/styles/dark-theme.css';
 
 ReactDOM.createRoot(document.getElementById('root')).render(
   <RouterProvider

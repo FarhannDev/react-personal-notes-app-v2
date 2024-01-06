@@ -1,0 +1,125 @@
+/*
+   Dark Theme Navbar
+*/
+
+[data-theme='dark'] .navbar {
+  background-color: #262626;
+}
+
+[data-theme='dark'] .navbar .navbar-brand {
+  color: #fff;
+}
+
+/*
+   Dark Theme Welcome Card
+*/
+[data-theme='dark'] .welcome-card-item {
+  border-radius: 12px;
+  border: 0.836px solid var(--Font-100, #e7e7e7);
+  background: var(--Font-950, #262626);
+}
+
+[data-theme='dark'] .welcome-card-item .welcome-card__title {
+  color: #ffff;
+}
+[data-theme='dark'] .welcome-card-item .welcome-card__description {
+  color: #ffff;
+}
+
+/*
+   Dark Theme Heading
+*/
+[data-theme='dark'] .content-heading {
+  color: #fff;
+}
+
+/*
+   Dark Theme Notes Card
+*/
+[data-theme='dark'] .note-card-item {
+  border: 0.836px solid var(--Font-100, #e7e7e7);
+  background: var(--Font-950, #262626);
+}
+
+[data-theme='dark'] .note-card-item .note-card-item__title {
+  color: #fff;
+}
+
+[data-theme='dark'] .note-card-item .note-card-item__description {
+  color: #fff;
+}
+
+[data-theme='dark'] .note-card-item .note-card-item__date {
+  color: #fff;
+}
+
+/*
+   Dark Theme Detail Notes 
+*/
+[data-theme='dark'] .note-content-heading {
+  color: #fff;
+}
+
+[data-theme='dark'] .note-content-body {
+  color: #fff;
+}
+
+[data-theme='dark'] .note-content-date {
+  color: #fff;
+}
+/*
+   Dark Theme Search Bar
+*/
+[data-theme='dark'] .search-box-form__input {
+  background: var(--Font-950, #262626);
+  border: 0.836px solid var(--Font-100, #e7e7e7);
+  color: #fff;
+}
+[data-theme='dark'] .search-box-form__input::placeholder {
+  color: #fff;
+}
+
+/*
+   Dark Theme Wishlist Notes 
+*/
+
+[data-theme='dark'] .wishlist-card-item {
+  background: var(--Font-950, #262626);
+  border: 0.836px solid var(--Font-100, #e7e7e7);
+  color: #fff;
+}
+
+[data-theme='dark'] .wishlist-card-item .wishlist-card__title {
+  color: #fff;
+}
+[data-theme='dark'] .wishlist-card-item .wishlist-card__description {
+  color: #fff;
+}
+
+/*
+   Dark Theme Form Input Notes 
+*/
+
+[data-theme='dark'] .notelist-form-input {
+  background: var(--Font-950, #262626);
+  border: 0.836px solid var(--Font-100, #e7e7e7);
+  color: #fff;
+}
+
+[data-theme='dark'] .notelist-form-input::placeholder {
+  color: #fff;
+}
+[data-theme='dark'] .notelist-form-input__textarea {
+  background: var(--Font-950, #262626);
+  border: 0.836px solid var(--Font-100, #e7e7e7);
+  color: #fff;
+}
+
+[data-theme='dark'] [data-placeholder]:empty:before {
+  content: attr(data-placeholder);
+  color: var(--Font-800, #fff);
+}
+
+[data-theme='dark'] .notelist-form-input__button {
+  color: #fff;
+}

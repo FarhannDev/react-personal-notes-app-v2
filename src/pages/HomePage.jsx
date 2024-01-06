@@ -1,5 +1,5 @@
 /* eslint-disable no-unused-vars */
-import React from 'react';
+import React, { useContext, useEffect, useMemo } from 'react';
 import { Helmet } from 'react-helmet';
 import { Container, Row, Col, Card } from 'react-bootstrap';
 import WishlistCardItem from '../components/WishlistCardItem';
@@ -32,7 +32,6 @@ export default function HomePage() {
             />
           </Col>
         </Row>
-
         <Row className="justify-content-start pt-5">
           <Col>
             {/*  */}
