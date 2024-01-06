@@ -21,7 +21,7 @@
 body {
   background-color: var(--background-color);
   color: var(--color);
-  transition: background-color 0.5s, color 0.5s;
+  /* transition: background-color 0.5s, color 0.5s; */
   scroll-behavior: smooth;
   font-synthesis: none;
   text-rendering: optimizeLegibility;

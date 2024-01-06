@@ -1,9 +1,8 @@
 import { FaMoon, FaSun } from 'react-icons/fa';
-import ThemeContext from '../contexts/ThemeContext';
-import { useContext } from 'react';
+import { useTheme } from '../hooks/useTheme.js';
 
 export default function ToggleColorMode() {
-  const { theme, toggleTheme } = useContext(ThemeContext);
+  const { theme, toggleTheme } = useTheme();
   return (
     <button
       type="button"
