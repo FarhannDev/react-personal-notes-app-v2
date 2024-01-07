@@ -131,3 +131,20 @@
 [data-theme='dark'] .notelist-form-input__button {
   color: #fff;
 }
+
+/* Auth
+
+*/
+[data-theme='dark'] .auth-form-input {
+  background: var(--Font-950, #262626);
+  border: 0.836px solid var(--Font-100, #e7e7e7);
+  color: #fff;
+}
+
+[data-theme='dark'] .auth-form-input::placeholder {
+  color: #fff;
+}
+
+[data-theme='dark'] .auth-form-label {
+  color: #fff;
+}

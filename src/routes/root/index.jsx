@@ -8,6 +8,8 @@ import NotesDetailPage from '../../pages/NotesDetailPage';
 import NotesActivePage from '../../pages/NotesActivePage';
 import NotesIndexPage from '../../pages/NotesIndexPage';
 import PageNotFoundPage from '../../pages/PageNotFoundPage';
+import LoginPage from '../../pages/auth/LoginPage';
+import RegisterPage from '../../pages/auth/RegisterPage';
 
 const router = createBrowserRouter([
   {
@@ -19,6 +21,14 @@ const router = createBrowserRouter([
         index: true,
         element: <HomePage />,
         // errorElement: <PageNotFoundPage />,
+      },
+      {
+        path: 'login',
+        element: <LoginPage />,
+      },
+      {
+        path: 'register',
+        element: <RegisterPage />,
       },
       {
         path: 'about',
