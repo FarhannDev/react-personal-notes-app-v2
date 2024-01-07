@@ -148,3 +148,19 @@
 [data-theme='dark'] .auth-form-label {
   color: #fff;
 }
+
+/*  user profile */
+
+[data-theme='dark'] .user-profile-card {
+  border-radius: 8px;
+  border: 0.836px solid var(--Font-100, #e7e7e7);
+  background: var(--Font-950, #262626);
+}
+
+[data-theme='dark'] .user-profile-card .list-group-item {
+  background: var(--Font-950, #262626);
+  color: #fff;
+}
+[data-theme='dark'] .user-profile-card .user-profile-title {
+  color: #fff;
+}

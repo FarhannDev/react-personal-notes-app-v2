@@ -1,7 +1,6 @@
 import { createBrowserRouter } from 'react-router-dom';
 import Root from '../root';
 import HomePage from '../../pages/HomePage';
-import AboutPage from '../../pages/AboutPage';
 import NotesAddPage from '../../pages/NotesAddPage';
 import NotesArchivePage from '../../pages/NotesArchivePage';
 import NotesDetailPage from '../../pages/NotesDetailPage';
@@ -10,6 +9,7 @@ import NotesIndexPage from '../../pages/NotesIndexPage';
 import PageNotFoundPage from '../../pages/PageNotFoundPage';
 import LoginPage from '../../pages/auth/LoginPage';
 import RegisterPage from '../../pages/auth/RegisterPage';
+import UserProfilePage from '../../pages/UserProfilePage';
 
 const router = createBrowserRouter([
   {
@@ -31,8 +31,8 @@ const router = createBrowserRouter([
         element: <RegisterPage />,
       },
       {
-        path: 'about',
-        element: <AboutPage />,
+        path: 'user/profile',
+        element: <UserProfilePage />,
       },
       {
         path: '/notes',

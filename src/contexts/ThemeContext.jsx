@@ -1,13 +1,7 @@
 /* eslint-disable react-refresh/only-export-components */
 /* eslint-disable react/prop-types */
 /* eslint-disable no-unused-vars */
-import React, {
-  createContext,
-  useContext,
-  useEffect,
-  useMemo,
-  useState,
-} from 'react';
+import React, { createContext, useEffect, useState } from 'react';
 
 export const ThemeContext = createContext();
 
@@ -16,6 +10,7 @@ export const ThemeProvider = ({ children }) => {
   const [theme, setTheme] = useState(
     () => localStorage.getItem('theme-react-personal-notes-v2') || 'light'
   );
+
   const toggleTheme = () => {
     setTheme((prevTheme) => {
       // mendapatkan nilai tema baru berdasarkan state sebelumnya
