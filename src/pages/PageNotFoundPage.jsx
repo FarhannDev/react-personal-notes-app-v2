@@ -17,9 +17,7 @@ export default function PageNotFoundPage() {
     <React.Fragment>
       <Seo />
       <Navigation name="Personal Notes" />
-      <main>
-        <PageNotFound title="Halaman Tidak Ditemukan" />
-      </main>
+      <PageNotFound title="Halaman Tidak Ditemukan" />
     </React.Fragment>
   );
 }

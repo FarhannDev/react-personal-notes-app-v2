@@ -1,7 +1,13 @@
 /* eslint-disable react-refresh/only-export-components */
 /* eslint-disable react/prop-types */
 /* eslint-disable no-unused-vars */
-import React, { createContext, useContext, useMemo, useState } from 'react';
+import React, {
+  createContext,
+  useContext,
+  useEffect,
+  useMemo,
+  useState,
+} from 'react';
 
 export const ThemeContext = createContext();
 
@@ -22,17 +28,20 @@ export const ThemeProvider = ({ children }) => {
     });
   };
 
-  const themeContextValue = React.useMemo(() => {
-    document.documentElement.setAttribute('data-theme', theme);
-    return { theme, setTheme, toggleTheme };
-  }, [theme]);
+  // const themeContextValue = React.useMemo(() => {
+  //   return { theme, setTheme, toggleTheme };
+  // }, [theme]);
 
   // useMemo(() => {
   //   document.documentElement.setAttribute('data-theme', theme);
   // }, [theme]);
 
+  useEffect(() => {
+    document.documentElement.setAttribute('data-theme', theme);
+  }, [theme]);
+
   return (
-    <ThemeContext.Provider value={themeContextValue}>
+    <ThemeContext.Provider value={{ theme, toggleTheme }}>
       {children}
     </ThemeContext.Provider>
   );

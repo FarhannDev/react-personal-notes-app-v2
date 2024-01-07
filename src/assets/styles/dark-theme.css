@@ -10,6 +10,14 @@
   color: #fff;
 }
 
+[data-theme='dark'] .navbar .nav-link {
+  color: var(--Font-50, #f6f6f6);
+}
+
+[data-theme='dark'] .locale-codename {
+  color: #fff;
+}
+
 /*
    Dark Theme Welcome Card
 */
