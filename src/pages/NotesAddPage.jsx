@@ -6,6 +6,7 @@ import { toast } from 'react-toastify';
 import ContentHeading from '../components/ContentHeading';
 import NoteFormInput from '../components/NoteFormInput';
 import { addNote } from '../utils/api/network-data';
+import { useLanguage } from '../hooks/useLanguage';
 
 import 'react-toastify/dist/ReactToastify.css';
 
@@ -19,6 +20,7 @@ export function Seo() {
 }
 
 export default function NotesAddPage() {
+  const { language } = useLanguage();
   const navigate = useNavigate();
   const onAddNotesHandler = (note) => {
     addNote(note);
@@ -41,7 +43,9 @@ export default function NotesAddPage() {
       <Seo />
 
       <Container>
-        <ContentHeading title={'Buat Catatan Baru'} />
+        <ContentHeading
+          title={language === 'id' ? 'Buat Catatan Baru' : 'Create New Notes'}
+        />
         <NoteFormInput addNote={onAddNotesHandler} />
       </Container>
     </React.Fragment>

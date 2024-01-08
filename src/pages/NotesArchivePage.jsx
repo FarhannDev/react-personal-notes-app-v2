@@ -9,6 +9,8 @@ import NoteCardItem from '../components/NoteCardItem';
 import SearchBar from '../components/SearchBar';
 import AddButton from '../components/AddButton';
 import { getArchivedNotes } from '../utils/api/network-data';
+import { useLanguage } from '../hooks/useLanguage';
+import Loading from '../components/Loading';
 
 export function Seo() {
   return (
@@ -27,6 +29,7 @@ export default function NotesArchivePage() {
   });
 
   const [isLoading, setIsLoading] = useState(false);
+  const { language } = useLanguage();
 
   useEffect(() => {
     const fetchDataFromNetwork = async () => {
@@ -72,7 +75,13 @@ export default function NotesArchivePage() {
 
   const NoteListItemIsEmpty = () => (
     <div className="d-flex justify-content-center pt-5">
-      <ContentHeading title="Belum Ada Daftar Catatan" />
+      <ContentHeading
+        title={
+          language === 'id'
+            ? 'Belum Ada Daftar Catatan'
+            : 'No List of Notes Yet'
+        }
+      />
     </div>
   );
 
@@ -96,17 +105,31 @@ export default function NotesArchivePage() {
 
         <Row className="justify-content-start py-3">
           <Col>
-            <ContentHeading title={'Daftar Catatan Diarsipkan'} />
+            <ContentHeading
+              title={
+                language === 'id'
+                  ? 'Daftar Catatan Diarsipkan'
+                  : 'List of Archived Notes'
+              }
+            />
             <SearchBar
               keyword={keyword}
               keywordChange={onKeywordChangeHandler}
-              placeholder={'Cari Catatan Diarsipkan'}
+              placeholder={
+                language === 'id'
+                  ? 'Cari Catatan Diarsipkan'
+                  : 'Search Archived Notes'
+              }
               loading={isLoading}
             />
           </Col>
         </Row>
         {isLoading ? (
-          <div className="loading-text">Data Sedang Dimuat ...</div>
+          <Loading
+            placeholder={
+              language === 'id' ? 'Data Sedang Dimuat ...' : 'Loading...'
+            }
+          />
         ) : (
           <>
             {filteredArchiveNotes.length ? (

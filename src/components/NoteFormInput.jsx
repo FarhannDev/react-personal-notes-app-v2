@@ -2,8 +2,10 @@
 import React, { useState } from 'react';
 import PropTypes from 'prop-types';
 import { Row, Col, Form, Button } from 'react-bootstrap';
+import { useLanguage } from '../hooks/useLanguage';
 
 export default function NoteFormInput({ addNote }) {
+  const { language } = useLanguage();
   const [inputTitle, setInputTitle] = useState('');
   const [inputBody, setInputBody] = useState('');
 
@@ -34,7 +36,9 @@ export default function NoteFormInput({ addNote }) {
             <Form.Group className="mb-3" controlId="exampleForm.ControlInput1">
               <Form.Control
                 type="text"
-                placeholder="Tulis Judul Catatan Kamu"
+                placeholder={
+                  language === 'id' ? 'Tulis Judul Catatan' : 'Write Note Title'
+                }
                 className="notelist-form-input"
                 value={inputTitle}
                 onChange={onTitleChangeEventHandler}
@@ -45,7 +49,11 @@ export default function NoteFormInput({ addNote }) {
               <div
                 contentEditable
                 className="notelist-form-input__textarea"
-                data-placeholder="Tuliskan semua yang ada di pikiran kamu..."
+                data-placeholder={
+                  language === 'id'
+                    ? 'Tuliskan semua yang ada di pikiran kamu...'
+                    : `Write down everything that's on your mind...`
+                }
                 onInput={onBodyChangeEventHandler}
               ></div>
             </Form.Group>
@@ -57,7 +65,7 @@ export default function NoteFormInput({ addNote }) {
                 className="notelist-form-input__button"
                 disabled={!isDisabledButton}
               >
-                Simpan
+                {language === 'id' ? 'Simpan' : 'Save'}
               </Button>
               <Button
                 type="button"
@@ -65,7 +73,7 @@ export default function NoteFormInput({ addNote }) {
                 className="notelist-form-input__button"
                 onClick={onResetInputValue}
               >
-                Batalkan
+                {language === 'id' ? 'Batalkan' : 'Cancel'}
               </Button>
             </div>
           </Form>

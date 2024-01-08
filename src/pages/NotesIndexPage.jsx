@@ -2,14 +2,17 @@
 /* eslint-disable react/prop-types */
 import React, { useContext, useEffect, useMemo, useState } from 'react';
 import { Helmet } from 'react-helmet';
-import { useSearchParams } from 'react-router-dom';
+import { useSearchParams, useNavigate, Navigate } from 'react-router-dom';
 import { Container, Row, Col } from 'react-bootstrap';
 import { ToastContainer } from 'react-toastify';
 import ContentHeading from '../components/ContentHeading';
 import NoteCardItem from '../components/NoteCardItem';
 import SearchBar from '../components/SearchBar';
 import AddButton from '../components/AddButton';
+import Loading from '../components/Loading';
 import { getActiveNotes } from '../utils/api/network-data';
+import { useLanguage } from '../hooks/useLanguage';
+import { useAuth } from '../hooks/useAuth';
 
 export default function NotesIndexPage() {
   const [searchParams, setSearchParams] = useSearchParams();
@@ -19,6 +22,9 @@ export default function NotesIndexPage() {
   });
 
   const [isLoading, setIsLoading] = useState(false);
+  const { language } = useLanguage();
+  const { isAuthenticated } = useAuth();
+  const navigate = useNavigate('/login');
 
   useEffect(() => {
     const fetchDataFromNetwork = async () => {
@@ -65,7 +71,13 @@ export default function NotesIndexPage() {
 
   const NoteListItemIsEmpty = () => (
     <div className="d-flex justify-content-center pt-5">
-      <ContentHeading title="Belum Ada Daftar Catatan" />
+      <ContentHeading
+        title={
+          language === 'id'
+            ? 'Belum Ada Daftar Catatan'
+            : 'No List of Notes Yet'
+        }
+      />
     </div>
   );
 
@@ -89,18 +101,24 @@ export default function NotesIndexPage() {
 
         <Row className="justify-content-start py-3">
           <Col>
-            <ContentHeading title={'Daftar Catatan '} />
+            <ContentHeading
+              title={language === 'id' ? 'Daftar Catatan ' : 'Note List'}
+            />
             <SearchBar
               keyword={keyword}
               keywordChange={onKeywordChangeHandler}
-              placeholder={'Cari Catatan'}
+              placeholder={language === 'id' ? 'Cari Catatan' : 'Search'}
               loading={isLoading}
             />
           </Col>
         </Row>
 
         {isLoading ? (
-          <div className="loading-text">Data Sedang Dimuat ...</div>
+          <Loading
+            placeholder={
+              language === 'id' ? 'Data Sedang Dimuat ...' : 'Loading...'
+            }
+          />
         ) : (
           <>
             {filteredNotes.length ? <NoteListItem /> : <NoteListItemIsEmpty />}

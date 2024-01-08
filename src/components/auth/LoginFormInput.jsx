@@ -5,11 +5,14 @@ import PropTypes from 'prop-types';
 import { Row, Col, Form, Button } from 'react-bootstrap';
 import { Link } from 'react-router-dom';
 import { useInput } from '../../hooks/useInput';
+import { useLanguage } from '../../hooks/useLanguage';
 
 export default function LoginFormInput({ login }) {
   const [email, onEmailHandler] = useInput('');
   const [password, onPasswordHandler] = useInput('');
   const handlerButtonDisabled = Boolean(email && password);
+
+  const { language } = useLanguage();
 
   const onSubmitHandler = (event) => {
     event.preventDefault();
@@ -27,7 +30,11 @@ export default function LoginFormInput({ login }) {
               <Form.Label className="auth-form-label">Email address</Form.Label>
               <Form.Control
                 type="email"
-                placeholder="Masukan Email Address"
+                placeholder={
+                  language === 'id'
+                    ? 'Masukan Email Address'
+                    : 'Enter Email Address'
+                }
                 className="auth-form-input"
                 value={email}
                 onChange={onEmailHandler}
@@ -38,7 +45,9 @@ export default function LoginFormInput({ login }) {
               <Form.Label className="auth-form-label">Password</Form.Label>
               <Form.Control
                 type="password"
-                placeholder="Masukan Password"
+                placeholder={
+                  language === 'id' ? 'Masukan Password' : 'Enter Password'
+                }
                 className="auth-form-input"
                 value={password}
                 onChange={onPasswordHandler}
@@ -52,18 +61,22 @@ export default function LoginFormInput({ login }) {
                 variant="secondary"
                 size="lg"
               >
-                Masuk
+                {language === 'id' ? 'Masuk' : 'Login'}
               </Button>
             </div>
 
             <div className="d-flex flex-column pt-4">
               <div>
-                <span className="auth-form-label">Belum punya akun?</span>{' '}
+                <span className="auth-form-label">
+                  {language === 'id'
+                    ? `Belum punya akun? `
+                    : `Don't have an account yet?`}
+                </span>{' '}
                 <Link
                   className="auth-form-label text-decoration-underline"
                   to={'/register'}
                 >
-                  Register di sini
+                  Register {language === 'id' ? 'di sini' : 'Now'}
                 </Link>
               </div>
             </div>

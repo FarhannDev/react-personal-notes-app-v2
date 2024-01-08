@@ -4,6 +4,7 @@ import React, { useState } from 'react';
 import { Link } from 'react-router-dom';
 import { Row, Col, Form, Button } from 'react-bootstrap';
 import { useInput } from '../../hooks/useInput';
+import { useLanguage } from '../../hooks/useLanguage';
 
 export default function RegisterFormInput({ register }) {
   const [name, onNameChange] = useInput('');
@@ -11,6 +12,8 @@ export default function RegisterFormInput({ register }) {
   const [password, setPassword] = useState('');
   const [confirmPassword, setConfirmPasswordChange] = useState('');
   const [passwordsMatch, setPasswordsMatch] = useState(true);
+
+  const { language } = useLanguage();
 
   const handlePasswordChange = (event) => {
     setPassword(event.target.value);
@@ -44,10 +47,14 @@ export default function RegisterFormInput({ register }) {
         <Col>
           <Form onSubmit={onSubmitHandler}>
             <Form.Group className="mb-3" controlId="exampleForm.ControlInput1">
-              <Form.Label className="auth-form-label">Nama Lengkap</Form.Label>
+              <Form.Label className="auth-form-label">
+                {language === 'id' ? 'Nama Lengkap' : 'Full Name'}
+              </Form.Label>
               <Form.Control
                 type="text"
-                placeholder="Masukan Nama"
+                placeholder={
+                  language === 'id' ? 'Masukan Nama' : 'Enter Full Name'
+                }
                 className="auth-form-input"
                 value={name}
                 onChange={onNameChange}
@@ -57,7 +64,11 @@ export default function RegisterFormInput({ register }) {
               <Form.Label className="auth-form-label">Email address</Form.Label>
               <Form.Control
                 type="email"
-                placeholder="Masukan Email Address"
+                placeholder={
+                  language === 'id'
+                    ? 'Masukan Email Address'
+                    : 'Enter Email Address'
+                }
                 className="auth-form-input"
                 value={email}
                 onChange={onEmailChange}
@@ -68,7 +79,9 @@ export default function RegisterFormInput({ register }) {
               <Form.Label className="auth-form-label">Password</Form.Label>
               <Form.Control
                 type="password"
-                placeholder="Masukan Password"
+                placeholder={
+                  language === 'id' ? 'Masukan Password' : 'Enter Password'
+                }
                 className="auth-form-input"
                 value={password}
                 onChange={handlePasswordChange}
@@ -76,11 +89,13 @@ export default function RegisterFormInput({ register }) {
             </Form.Group>
             <Form.Group className="mb-3">
               <Form.Label className="auth-form-label">
-                Konfirmasi Password
+                Confirm Password
               </Form.Label>
               <Form.Control
                 type="password"
-                placeholder="Konfirmasi Password"
+                placeholder={
+                  language === 'id' ? 'Konfirmasi Password' : 'Password Confirm'
+                }
                 className="auth-form-input"
                 value={confirmPassword}
                 onChange={handleConfirmPasswordChange}
@@ -94,18 +109,22 @@ export default function RegisterFormInput({ register }) {
                 variant="secondary"
                 size="lg"
               >
-                Daftarkan
+                {language === 'id' ? 'Daftarkan' : 'Register Now'}
               </Button>
             </div>
 
             <div className="d-flex flex-column pt-4">
               <div>
-                <span className="auth-form-label">Sudah punya akun?</span>{' '}
+                <span className="auth-form-label">
+                  {language === 'id'
+                    ? `Sudah punya akun?`
+                    : 'Already have an account?'}
+                </span>{' '}
                 <Link
                   className="auth-form-label text-decoration-underline"
                   to={'/login'}
                 >
-                  Login di sini
+                  Login {language === 'id' ? 'di sini' : 'Now'}
                 </Link>
               </div>
             </div>
