@@ -1,10 +1,12 @@
 /* eslint-disable no-unused-vars */
-import React, { useContext, useEffect, useMemo } from 'react';
+import React, { useContext, useEffect, useMemo, useState } from 'react';
 import { Helmet } from 'react-helmet';
 import { Container, Row, Col, Card } from 'react-bootstrap';
 import WishlistCardItem from '../components/WishlistCardItem';
 import WelcomeCard from '../components/WelcomeCard';
 import ContentHeading from '../components/ContentHeading';
+import { getUserLogged } from '../utils/api/network-data';
+import { useAuth } from '../hooks/useAuth';
 
 export function Seo() {
   return (
@@ -16,6 +18,12 @@ export function Seo() {
 }
 
 export default function HomePage() {
+  const { initializing, isAuthenticated } = useAuth();
+
+  if (initializing) {
+    return null;
+  }
+
   return (
     <React.Fragment>
       <Seo />
@@ -24,11 +32,8 @@ export default function HomePage() {
         <Row className="justify-content-start">
           <Col>
             <WelcomeCard
-              title=" Halo, Selamat datang di personal notes"
-              description="Aplikasi personal notes adalah perangkat lunak yang dirancang untuk
-        membantu pengguna menyimpan, mengatur, dan mengelola catatan pribadi
-        mereka. Tujuannya adalah memberikan platform untuk mencatat ide,
-        informasi penting, atau pikiran sehari-hari"
+              title={`Halo ${isAuthenticated.name}, Selamat datang di aplikasi personal notes`}
+              description="Aplikasi personal notes adalah Sebuah Proyek Akhir Membangun SPA + API, Context, dan Hooks pada learning React Developer kelas Fundamental."
             />
           </Col>
         </Row>
@@ -50,7 +55,7 @@ export default function HomePage() {
               <Col lg={4} md={6}>
                 <WishlistCardItem
                   title={'Daftar Catatan'}
-                  description={'Lihat Semua Daftar Catatan Yang kamu Tulis'}
+                  description={'Lihat Semua Daftar Catatan Aktif Kamu'}
                   link={'/notes'}
                 />
               </Col>
@@ -59,13 +64,6 @@ export default function HomePage() {
                   title={'Catatan Diarsipkan'}
                   description={'Lihat Semua Daftar Catatan Yang kamu Arsipkan'}
                   link={'/notes/archive'}
-                />
-              </Col>
-              <Col lg={4} md={6}>
-                <WishlistCardItem
-                  title={'Catatan Aktif'}
-                  description={'Lihat Semua Daftar Catatan Aktif Kamu'}
-                  link={'/notes/active'}
                 />
               </Col>
             </Row>

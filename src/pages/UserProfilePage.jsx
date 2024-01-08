@@ -1,9 +1,13 @@
+/* eslint-disable react-hooks/rules-of-hooks */
 import { Container, Row, Col, Card, ListGroup, Button } from 'react-bootstrap';
 import ContentHeading from '../components/ContentHeading';
 import { showFormattedDate } from '../utils/formatterDate';
 import { FaPowerOff } from 'react-icons/fa6';
+import { useAuth } from '../hooks/useAuth';
 
 export default function UserProfilePage() {
+  const { isAuthenticated, logout } = useAuth();
+
   return (
     <Container>
       <Row className="justify-content-start pt-3">
@@ -18,7 +22,7 @@ export default function UserProfilePage() {
                     <h3 className="user-profile-title">Akun ID</h3>
                   </Col>
                   <Col lg={8} md={6} sm={6}>
-                    <h3 className="user-profile-title">1212121212</h3>
+                    <h3 className="user-profile-title">{isAuthenticated.id}</h3>
                   </Col>
                 </Row>
               </ListGroup.Item>
@@ -28,7 +32,9 @@ export default function UserProfilePage() {
                     <h3 className="user-profile-title"> Nama Lengkap</h3>
                   </Col>
                   <Col lg={8} md={6} sm={6}>
-                    <h3 className="user-profile-title">FARHAN</h3>
+                    <h3 className="user-profile-title">
+                      {isAuthenticated.name}
+                    </h3>
                   </Col>
                 </Row>
               </ListGroup.Item>
@@ -39,7 +45,7 @@ export default function UserProfilePage() {
                   </Col>
                   <Col lg={8}>
                     <h3 className="user-profile-title">
-                      farhan18042002@gmail.com
+                      {isAuthenticated.email}
                     </h3>
                   </Col>
                 </Row>
@@ -60,7 +66,7 @@ export default function UserProfilePage() {
             </ListGroup>
 
             <div className="d-flex justify-content-start pt-3">
-              <Button variant="outline-light">
+              <Button onClick={logout} variant="outline-light">
                 {' '}
                 <FaPowerOff fontSize={16} /> Keluar Dari Aplikasi
               </Button>{' '}

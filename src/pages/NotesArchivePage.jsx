@@ -3,12 +3,12 @@ import React, { useEffect, useState } from 'react';
 import { Helmet } from 'react-helmet';
 import { useSearchParams } from 'react-router-dom';
 import { Container, Row, Col } from 'react-bootstrap';
-import { getAllNotes } from '../utils/data/local-data';
 import { ToastContainer } from 'react-toastify';
 import ContentHeading from '../components/ContentHeading';
 import NoteCardItem from '../components/NoteCardItem';
 import SearchBar from '../components/SearchBar';
 import AddButton from '../components/AddButton';
+import { getArchivedNotes } from '../utils/api/network-data';
 
 export function Seo() {
   return (
@@ -26,8 +26,20 @@ export default function NotesArchivePage() {
     return searchParams.get('keyword') || '';
   });
 
+  const [isLoading, setIsLoading] = useState(false);
+
   useEffect(() => {
-    setNotes(getAllNotes);
+    const fetchDataFromNetwork = async () => {
+      setIsLoading(true);
+      const { data } = await getArchivedNotes();
+      setNotes(data);
+
+      setTimeout(() => {
+        setIsLoading(false);
+      }, 1000);
+    };
+
+    fetchDataFromNetwork();
   }, []);
 
   const onKeywordChangeHandler = (keyword) => {
@@ -37,10 +49,7 @@ export default function NotesArchivePage() {
 
   const filteredArchiveNotes = notes
     .filter((note) => {
-      return (
-        note.archived &&
-        note.title.toLowerCase().includes(keyword.toLowerCase())
-      );
+      return note.title.toLowerCase().includes(keyword.toLowerCase());
     })
     .sort((a, b) =>
       b.createdAt.toString().localeCompare(a.createdAt.toString())
@@ -92,14 +101,20 @@ export default function NotesArchivePage() {
               keyword={keyword}
               keywordChange={onKeywordChangeHandler}
               placeholder={'Cari Catatan Diarsipkan'}
+              loading={isLoading}
             />
           </Col>
         </Row>
-
-        {filteredArchiveNotes.length ? (
-          <NoteListItem />
+        {isLoading ? (
+          <div className="loading-text">Data Sedang Dimuat ...</div>
         ) : (
-          <NoteListItemIsEmpty />
+          <>
+            {filteredArchiveNotes.length ? (
+              <NoteListItem />
+            ) : (
+              <NoteListItemIsEmpty />
+            )}
+          </>
         )}
 
         <AddButton />

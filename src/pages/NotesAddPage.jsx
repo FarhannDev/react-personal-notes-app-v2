@@ -5,7 +5,7 @@ import { Container } from 'react-bootstrap';
 import { toast } from 'react-toastify';
 import ContentHeading from '../components/ContentHeading';
 import NoteFormInput from '../components/NoteFormInput';
-import { addNote } from '../utils/data/local-data';
+import { addNote } from '../utils/api/network-data';
 
 import 'react-toastify/dist/ReactToastify.css';
 
@@ -33,7 +33,7 @@ export default function NotesAddPage() {
       theme: 'light',
     });
 
-    navigate('/notes/active');
+    navigate('/notes');
   };
 
   return (

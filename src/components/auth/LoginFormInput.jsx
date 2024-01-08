@@ -1,21 +1,36 @@
+/* eslint-disable react/prop-types */
 /* eslint-disable no-unused-vars */
 import React, { useState } from 'react';
 import PropTypes from 'prop-types';
 import { Row, Col, Form, Button } from 'react-bootstrap';
 import { Link } from 'react-router-dom';
+import { useInput } from '../../hooks/useInput';
 
-export default function LoginFormInput() {
+export default function LoginFormInput({ login }) {
+  const [email, onEmailHandler] = useInput('');
+  const [password, onPasswordHandler] = useInput('');
+  const handlerButtonDisabled = Boolean(email && password);
+
+  const onSubmitHandler = (event) => {
+    event.preventDefault();
+    if (handlerButtonDisabled) {
+      login({ email, password });
+    }
+  };
+
   return (
     <React.Fragment>
       <Row className="justify-content-start pt-3">
         <Col>
-          <Form>
+          <Form onSubmit={onSubmitHandler}>
             <Form.Group className="mb-3" controlId="exampleForm.ControlInput1">
               <Form.Label className="auth-form-label">Email address</Form.Label>
               <Form.Control
-                type="text"
+                type="email"
                 placeholder="Masukan Email Address"
                 className="auth-form-input"
+                value={email}
+                onChange={onEmailHandler}
               />
             </Form.Group>
 
@@ -25,11 +40,18 @@ export default function LoginFormInput() {
                 type="password"
                 placeholder="Masukan Password"
                 className="auth-form-input"
+                value={password}
+                onChange={onPasswordHandler}
               />
             </Form.Group>
 
             <div className="d-grid gap-3 mx-auto pt-3">
-              <Button type="submit" variant="secondary" size="lg">
+              <Button
+                disabled={!handlerButtonDisabled}
+                type="submit"
+                variant="secondary"
+                size="lg"
+              >
                 Masuk
               </Button>
             </div>

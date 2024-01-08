@@ -1,10 +1,10 @@
 /* eslint-disable no-unused-vars */
 /* eslint-disable react/prop-types */
-import React, { useState } from 'react';
+import React, { useEffect, useState } from 'react';
 import { useParams } from 'react-router-dom';
 import { Helmet } from 'react-helmet';
 import { Container, Stack } from 'react-bootstrap';
-import { getNote } from '../utils/data/local-data';
+import { getNote } from '../utils/api/network-data';
 import NoteDetail from '../components/NoteDetail';
 import DeleteButton from '../components/DeleteButton';
 import ArchiveButton from '../components/ArchiveButton';
@@ -12,7 +12,22 @@ import PageNotFound from '../components/PageNotFound';
 
 export default function NotesDetailPage() {
   const { noteId } = useParams();
-  const [notes, setNotes] = useState(getNote(noteId));
+  const [notes, setNotes] = useState(null);
+  const [isError, setIsError] = useState(false);
+  const [isLoading, setIsLoading] = useState(true);
+
+  useEffect(() => {
+    const fetchDataFromNetwork = async () => {
+      const { data, error } = await getNote(noteId);
+      setNotes(data);
+      setIsError(error);
+
+      setIsLoading(false);
+    };
+
+    fetchDataFromNetwork();
+  }, [noteId]);
+
   const NotesDetailPageNotFound = () => {
     return (
       <>
@@ -23,16 +38,18 @@ export default function NotesDetailPage() {
     );
   };
 
-  const content = !notes ? (
-    <NotesDetailPageNotFound />
-  ) : (
+  if (!isError && isLoading) return null;
+
+  const content = (
     <>
       <Container>
         <Seo
-          title={notes.title}
-          description={`${notes.body.substring(0, 250)}`}
+          title={notes?.title}
+          description={`${notes?.body.substring(0, 250)}`}
         />
+
         <NoteDetail {...notes} />
+
         <div className="button-action-container">
           <Stack direction="horizontal" gap={2}>
             <DeleteButton id={notes.id} />
@@ -43,7 +60,7 @@ export default function NotesDetailPage() {
     </>
   );
 
-  return content;
+  return notes ? content : <NotesDetailPageNotFound />;
 }
 
 export function Seo({ title, description }) {

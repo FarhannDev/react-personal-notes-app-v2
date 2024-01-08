@@ -9,9 +9,9 @@ import ToggleUserAccount from './button/ToggleUserAccount';
 import { useAuth } from '../hooks/useAuth.js';
 
 export default function Navigation({ name }) {
-  const { authedUser } = useAuth();
+  const { isAuthenticated } = useAuth();
 
-  const contentMenu = authedUser ? (
+  const contentMenu = isAuthenticated ? (
     <>
       <Nav className="me-auto">
         <Link
@@ -34,14 +34,7 @@ export default function Navigation({ name }) {
           aria-label="Daftar Menu"
           to={'/notes/archive'}
         >
-          Catatan Diarsipkan
-        </Link>
-        <Link
-          className="d-none d-lg-block mx-2 nav-link"
-          aria-label="Daftar Menu"
-          to={'/notes/active'}
-        >
-          Catatan Aktif
+          Diarsipkan
         </Link>
       </Nav>
       <div className="d-flex justify-content-end">

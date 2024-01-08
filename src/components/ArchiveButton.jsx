@@ -2,9 +2,9 @@
 import { Button } from 'react-bootstrap';
 import { FaBookmark, FaRegBookmark } from 'react-icons/fa6';
 import { useNavigate } from 'react-router-dom';
-import { archiveNote, unarchiveNote } from '../utils/data/local-data';
 import { toast } from 'react-toastify';
 import PropTypes from 'prop-types';
+import { archiveNote, unarchiveNote } from '../utils/api/network-data';
 
 export default function ArchiveButton({ id, archived }) {
   const navigate = useNavigate();
@@ -23,7 +23,7 @@ export default function ArchiveButton({ id, archived }) {
       theme: 'light',
     });
 
-    navigate('/notes/active');
+    navigate('/notes');
   };
 
   const onUnArchiveHandler = () => {
@@ -40,7 +40,7 @@ export default function ArchiveButton({ id, archived }) {
       theme: 'light',
     });
 
-    navigate('/notes/active');
+    navigate('/notes');
   };
 
   const ArchiveButton = () => {

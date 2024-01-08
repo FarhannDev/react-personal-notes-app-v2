@@ -2,10 +2,11 @@
 import { Button } from 'react-bootstrap';
 import { FaTrash } from 'react-icons/fa6';
 import { useNavigate } from 'react-router-dom';
-import { deleteNote } from '../utils/data/local-data';
+// import { deleteNote } from '../utils/data/local-data';
 import { toast } from 'react-toastify';
 import PropTypes from 'prop-types';
 
+import { deleteNote } from '../utils/api/network-data';
 export default function DeleteButton({ id }) {
   const navigate = useNavigate();
 
@@ -23,7 +24,7 @@ export default function DeleteButton({ id }) {
       theme: 'light',
     });
 
-    navigate('/notes/active');
+    navigate('/notes');
   };
 
   return (

@@ -4,12 +4,12 @@ import React, { useContext, useEffect, useMemo, useState } from 'react';
 import { Helmet } from 'react-helmet';
 import { useSearchParams } from 'react-router-dom';
 import { Container, Row, Col } from 'react-bootstrap';
-import { getAllNotes } from '../utils/data/local-data';
 import { ToastContainer } from 'react-toastify';
 import ContentHeading from '../components/ContentHeading';
 import NoteCardItem from '../components/NoteCardItem';
 import SearchBar from '../components/SearchBar';
 import AddButton from '../components/AddButton';
+import { getActiveNotes } from '../utils/api/network-data';
 
 export default function NotesIndexPage() {
   const [searchParams, setSearchParams] = useSearchParams();
@@ -18,8 +18,21 @@ export default function NotesIndexPage() {
     return searchParams.get('keyword') || '';
   });
 
+  const [isLoading, setIsLoading] = useState(false);
+
   useEffect(() => {
-    setNotes(getAllNotes);
+    const fetchDataFromNetwork = async () => {
+      // setIsLoading(false);
+      setIsLoading(true);
+      const { data, error } = await getActiveNotes();
+      setNotes(data);
+
+      setTimeout(() => {
+        setIsLoading(false);
+      }, 1000);
+    };
+
+    fetchDataFromNetwork();
   }, []);
 
   const onKeywordChangeHandler = (keyword) => {
@@ -76,16 +89,23 @@ export default function NotesIndexPage() {
 
         <Row className="justify-content-start py-3">
           <Col>
-            <ContentHeading title={'Daftar Semua Catatan '} />
+            <ContentHeading title={'Daftar Catatan '} />
             <SearchBar
               keyword={keyword}
               keywordChange={onKeywordChangeHandler}
               placeholder={'Cari Catatan'}
+              loading={isLoading}
             />
           </Col>
         </Row>
 
-        {filteredNotes.length ? <NoteListItem /> : <NoteListItemIsEmpty />}
+        {isLoading ? (
+          <div className="loading-text">Data Sedang Dimuat ...</div>
+        ) : (
+          <>
+            {filteredNotes.length ? <NoteListItem /> : <NoteListItemIsEmpty />}
+          </>
+        )}
 
         <AddButton />
       </Container>

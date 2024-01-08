@@ -245,3 +245,24 @@ main {
   margin-bottom: 20px;
   vertical-align: middle;
 }
+
+.loading-text {
+  display: -webkit-box;
+  -webkit-box-orient: vertical;
+  -webkit-line-clamp: 2;
+  align-self: stretch;
+  /* overflow: hidden; */
+  color: var(--Font-600, #565e73);
+  text-overflow: ellipsis;
+  font-family: Poppins;
+  font-size: 14px;
+  font-style: normal;
+  font-weight: 500;
+  line-height: 20px; /* 125% */
+  letter-spacing: 0.016px;
+  margin-bottom: 20px;
+}
+
+[data-theme='dark'] .loading-text {
+  color: #fff;
+}
