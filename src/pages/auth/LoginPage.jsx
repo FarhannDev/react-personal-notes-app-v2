@@ -4,8 +4,11 @@ import { useNavigate } from 'react-router-dom';
 import { useAuth } from '../../hooks/useAuth';
 import { useLanguage } from '../../hooks/useLanguage';
 import { login } from '../../utils/api/network-data';
-import ContentHeading from '../../components/ContentHeading';
-import LoginFormInput from '../../components/auth/LoginFormInput';
+import {
+  ContentHeading,
+  LoginFormInput,
+  MetaTagSeo,
+} from '../../components/LoadableComponent';
 import '../../assets/styles/auth.css';
 
 export default function LoginPage() {
@@ -26,6 +29,10 @@ export default function LoginPage() {
 
   return (
     <>
+      <MetaTagSeo
+        title={language === 'id' ? 'Masuk Ke Akun Saya' : 'Login to My Account'}
+        description="Yuk, login untuk menggunakan aplikasi."
+      />
       <Container>
         <ContentHeading
           title={

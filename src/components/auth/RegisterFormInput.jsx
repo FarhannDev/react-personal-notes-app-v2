@@ -1,6 +1,7 @@
 /* eslint-disable react/prop-types */
 /* eslint-disable no-unused-vars */
 import React, { useState } from 'react';
+import PropTypes from 'prop-types';
 import { Link } from 'react-router-dom';
 import { Row, Col, Form, Button } from 'react-bootstrap';
 import { useInput } from '../../hooks/useInput';
@@ -134,3 +135,5 @@ export default function RegisterFormInput({ register }) {
     </React.Fragment>
   );
 }
+
+RegisterFormInput.propTypes = { register: PropTypes.func.isRequired };

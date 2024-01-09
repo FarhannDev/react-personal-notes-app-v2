@@ -5,7 +5,6 @@ import React, { useState } from 'react';
 import languages from '../utils/languages';
 
 export const LanguageContext = React.createContext();
-
 export const LanguageProvider = ({ children }) => {
   const [language, setLanguage] = useState(() => {
     return localStorage.getItem('language-react-personal-notes-v2') || 'id';

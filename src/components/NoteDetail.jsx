@@ -1,7 +1,7 @@
 /* eslint-disable react/prop-types */
 import PropTypes from 'prop-types';
-import { Row, Col } from 'react-bootstrap';
 import parser from 'html-react-parser';
+import { Row, Col } from 'react-bootstrap';
 import { showFormattedDate } from '../utils/formatterDate';
 import { FaClock } from 'react-icons/fa6';
 

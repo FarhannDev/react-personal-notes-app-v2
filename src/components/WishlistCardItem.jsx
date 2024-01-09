@@ -1,8 +1,9 @@
 /* eslint-disable react/prop-types */
 import { Card } from 'react-bootstrap';
 import PropTypes from 'prop-types';
-import '../assets/styles/wishlist-card-item.css';
 import { Link } from 'react-router-dom';
+
+import '../assets/styles/wishlist-card-item.css';
 
 const WishlistCardItem = ({ title, description, link }) => {
   return (

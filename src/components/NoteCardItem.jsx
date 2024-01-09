@@ -1,11 +1,12 @@
 /* eslint-disable react/prop-types */
-import { Card } from 'react-bootstrap';
 import PropTypes from 'prop-types';
-import '../assets/styles/note-card-item.css';
+import { Card } from 'react-bootstrap';
 import { Link } from 'react-router-dom';
 import { FaClock } from 'react-icons/fa6';
 import { showFormattedDate } from '../utils/formatterDate';
 import parser from 'html-react-parser';
+
+import '../assets/styles/note-card-item.css';
 
 const NoteCardItem = ({ title, description, date, link }) => {
   return (

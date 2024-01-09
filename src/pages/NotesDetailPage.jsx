@@ -5,10 +5,12 @@ import { useParams } from 'react-router-dom';
 import { Helmet } from 'react-helmet';
 import { Container, Stack } from 'react-bootstrap';
 import { getNote } from '../utils/api/network-data';
-import NoteDetail from '../components/NoteDetail';
-import DeleteButton from '../components/DeleteButton';
-import ArchiveButton from '../components/ArchiveButton';
-import PageNotFound from '../components/PageNotFound';
+import {
+  DeleteButton,
+  ArchiveButton,
+  PageNotFound,
+  NoteDetail,
+} from '../components/LoadableComponent';
 
 export default function NotesDetailPage() {
   const { noteId } = useParams();

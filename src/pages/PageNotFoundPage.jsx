@@ -1,7 +1,6 @@
 import React from 'react';
 import { Helmet } from 'react-helmet';
-import PageNotFound from '../components/PageNotFound';
-import Navigation from '../components/Navigation';
+import { Navigation, PageNotFound } from '../components/LoadableComponent';
 
 export function Seo() {
   return (

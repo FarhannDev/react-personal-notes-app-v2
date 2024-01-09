@@ -1,9 +1,9 @@
 /* eslint-disable react/prop-types */
+import PropTypes from 'prop-types';
 import { Button } from 'react-bootstrap';
 import { FaBookmark, FaRegBookmark } from 'react-icons/fa6';
 import { useNavigate } from 'react-router-dom';
 import { toast } from 'react-toastify';
-import PropTypes from 'prop-types';
 import { archiveNote, unarchiveNote } from '../utils/api/network-data';
 
 export default function ArchiveButton({ id, archived }) {

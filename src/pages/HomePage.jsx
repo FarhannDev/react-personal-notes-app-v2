@@ -1,34 +1,31 @@
+/* eslint-disable react/prop-types */
 /* eslint-disable no-unused-vars */
-import React, { useContext, useEffect, useMemo, useState } from 'react';
+import React from 'react';
 import { Helmet } from 'react-helmet';
-import { Container, Row, Col, Card } from 'react-bootstrap';
-import WishlistCardItem from '../components/WishlistCardItem';
-import WelcomeCard from '../components/WelcomeCard';
-import ContentHeading from '../components/ContentHeading';
-import { getUserLogged } from '../utils/api/network-data';
+import { Container, Row, Col } from 'react-bootstrap';
 import { useAuth } from '../hooks/useAuth';
 import { useLanguage } from '../hooks/useLanguage';
-
-export function Seo() {
-  return (
-    <Helmet>
-      <title>React Personal Notes V2</title>
-      <meta name="description" content="Nested component" />
-    </Helmet>
-  );
-}
+import {
+  WelcomeCard,
+  WishlistCardItem,
+  ContentHeading,
+  MetaTagSeo,
+} from '../components/LoadableComponent';
 
 export default function HomePage() {
-  const { initializing, isAuthenticated } = useAuth();
+  const { isAuthenticated } = useAuth();
   const { language } = useLanguage();
-
-  if (initializing) {
-    return null;
-  }
 
   return (
     <React.Fragment>
-      <Seo />
+      <MetaTagSeo
+        title={
+          language === 'id'
+            ? 'Selamat datang di aplikasi personal notes'
+            : 'Welcome React Personal Notes'
+        }
+        description="Aplikasi personal notes adalah Sebuah Proyek Akhir Membangun SPA + API, Context, dan Hooks pada learning React Developer kelas Fundamental.        "
+      />
       <Container>
         {/* Tampilkan intro */}
         <Row className="justify-content-start">

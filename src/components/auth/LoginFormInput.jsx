@@ -1,18 +1,18 @@
 /* eslint-disable react/prop-types */
 /* eslint-disable no-unused-vars */
-import React, { useState } from 'react';
 import PropTypes from 'prop-types';
+import React from 'react';
 import { Row, Col, Form, Button } from 'react-bootstrap';
 import { Link } from 'react-router-dom';
 import { useInput } from '../../hooks/useInput';
 import { useLanguage } from '../../hooks/useLanguage';
 
 export default function LoginFormInput({ login }) {
+  const { language } = useLanguage();
   const [email, onEmailHandler] = useInput('');
   const [password, onPasswordHandler] = useInput('');
-  const handlerButtonDisabled = Boolean(email && password);
 
-  const { language } = useLanguage();
+  const handlerButtonDisabled = Boolean(email && password);
 
   const onSubmitHandler = (event) => {
     event.preventDefault();
@@ -86,3 +86,5 @@ export default function LoginFormInput({ login }) {
     </React.Fragment>
   );
 }
+
+LoginFormInput.propTypes = { login: PropTypes.func.isRequired };

@@ -1,18 +1,20 @@
 /* eslint-disable no-unused-vars */
 /* eslint-disable react/prop-types */
-import React, { useContext, useEffect, useMemo, useState } from 'react';
-import { Helmet } from 'react-helmet';
-import { useSearchParams, useNavigate, Navigate } from 'react-router-dom';
+import React, { useEffect, useState } from 'react';
+import { useSearchParams } from 'react-router-dom';
 import { Container, Row, Col } from 'react-bootstrap';
 import { ToastContainer } from 'react-toastify';
-import ContentHeading from '../components/ContentHeading';
-import NoteCardItem from '../components/NoteCardItem';
-import SearchBar from '../components/SearchBar';
-import AddButton from '../components/AddButton';
-import Loading from '../components/Loading';
 import { getActiveNotes } from '../utils/api/network-data';
 import { useLanguage } from '../hooks/useLanguage';
-import { useAuth } from '../hooks/useAuth';
+import {
+  ContentHeading,
+  Loading,
+  PageNotFound,
+  AddButton,
+  SearchBar,
+  NoteCardItem,
+  MetaTagSeo,
+} from '../components/LoadableComponent';
 
 export default function NotesIndexPage() {
   const [searchParams, setSearchParams] = useSearchParams();
@@ -21,18 +23,16 @@ export default function NotesIndexPage() {
     return searchParams.get('keyword') || '';
   });
 
-  const [isLoading, setIsLoading] = useState(false);
   const { language } = useLanguage();
-  const { isAuthenticated } = useAuth();
-  const navigate = useNavigate('/login');
+  const [isLoading, setIsLoading] = useState(false);
+  const [isError, setIsError] = useState(false);
 
   useEffect(() => {
     const fetchDataFromNetwork = async () => {
-      // setIsLoading(false);
       setIsLoading(true);
       const { data, error } = await getActiveNotes();
-      setNotes(data);
 
+      data && !error ? setNotes(data) : setIsError(error);
       setTimeout(() => {
         setIsLoading(false);
       }, 1000);
@@ -83,7 +83,10 @@ export default function NotesIndexPage() {
 
   const content = (
     <>
-      <Seo />
+      <MetaTagSeo
+        title={language === 'id' ? 'Daftar Semua Catatan' : 'Note List'}
+        description="Aplikasi personal notes adalah Sebuah Proyek Akhir Membangun SPA + API, Context, dan Hooks pada learning React Developer kelas Fundamental.        "
+      />
       <Container>
         {/* Tampil React Toast Notification */}
         <ToastContainer
@@ -130,14 +133,9 @@ export default function NotesIndexPage() {
     </>
   );
 
-  return content;
-}
-
-export function Seo() {
-  return (
-    <Helmet>
-      <title>Daftar Semua Catatan </title>
-      <meta name="description" content="Nested component" />
-    </Helmet>
+  return isError ? (
+    <PageNotFound title="Terjadi Kesalahan  Saat Pengambilan Data!" />
+  ) : (
+    content
   );
 }

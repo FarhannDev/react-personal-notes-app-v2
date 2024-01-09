@@ -3,6 +3,7 @@
 import { Card } from 'react-bootstrap';
 import PropTypes from 'prop-types';
 import '../assets/styles/welcome-card.css';
+
 const WelcomeCard = ({ title, description }) => {
   return (
     <>
@@ -18,4 +19,5 @@ WelcomeCard.propTypes = {
   title: PropTypes.string.isRequired,
   description: PropTypes.string.isRequired,
 };
+
 export default WelcomeCard;

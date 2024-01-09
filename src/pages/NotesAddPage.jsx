@@ -1,23 +1,14 @@
 import React from 'react';
-import { Helmet } from 'react-helmet';
 import { useNavigate } from 'react-router-dom';
 import { Container } from 'react-bootstrap';
 import { toast } from 'react-toastify';
-import ContentHeading from '../components/ContentHeading';
-import NoteFormInput from '../components/NoteFormInput';
 import { addNote } from '../utils/api/network-data';
 import { useLanguage } from '../hooks/useLanguage';
-
-import 'react-toastify/dist/ReactToastify.css';
-
-export function Seo() {
-  return (
-    <Helmet>
-      <title>Buat Catatan Baru</title>
-      <meta name="description" content="Nested component" />
-    </Helmet>
-  );
-}
+import {
+  ContentHeading,
+  NoteFormInput,
+  MetaTagSeo,
+} from '../components/LoadableComponent';
 
 export default function NotesAddPage() {
   const { language } = useLanguage();
@@ -40,7 +31,10 @@ export default function NotesAddPage() {
 
   return (
     <React.Fragment>
-      <Seo />
+      <MetaTagSeo
+        title={language === 'id' ? 'Buat Catatan Baru' : 'Create New Notes'}
+        description="Aplikasi personal notes adalah Sebuah Proyek Akhir Membangun SPA + API, Context, dan Hooks pada learning React Developer kelas Fundamental.        "
+      />
 
       <Container>
         <ContentHeading

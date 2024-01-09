@@ -18,18 +18,9 @@ export const ThemeProvider = ({ children }) => {
       // menyimpan nilai tema baru ke local storage
       localStorage.setItem('theme-react-personal-notes-v2', newTheme);
       // mengembalikan state dengan nilai theme terbaru.
-
       return newTheme;
     });
   };
-
-  // const themeContextValue = React.useMemo(() => {
-  //   return { theme, setTheme, toggleTheme };
-  // }, [theme]);
-
-  // useMemo(() => {
-  //   document.documentElement.setAttribute('data-theme', theme);
-  // }, [theme]);
 
   useEffect(() => {
     document.documentElement.setAttribute('data-theme', theme);

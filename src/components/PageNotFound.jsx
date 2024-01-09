@@ -1,8 +1,8 @@
 /* eslint-disable react/prop-types */
+import PropTypes from 'prop-types';
 import { Link } from 'react-router-dom';
 import { FaHouseChimney } from 'react-icons/fa6';
-import PropTypes from 'prop-types';
-import ContentHeading from '../components/ContentHeading';
+import { ContentHeading } from './LoadableComponent';
 
 export default function PageNotFound({ title = 'Halaman Tidak Ditemukan' }) {
   return (
